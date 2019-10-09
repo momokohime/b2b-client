@@ -52,7 +52,7 @@
             <b-form-radio-group @input="fetchDashboard()"  class="mr-3" id="radiosBtn" buttons button-variant="outline-secondary" v-model="selected" name="radiosBtn">
               <b-form-radio class="mx-0" value="JMDIOFWENFO" >{{ $t('day') }}</b-form-radio>
                <b-form-radio class="mx-0" value="efwe" >{{ $t('week') }}</b-form-radio>
-              <b-form-radio class="mx-0" value="fwef">{{ $t('month') }}</b-form-radio>
+              <b-form-radio class="mx-0" value="Month">{{ $t('month') }}</b-form-radio>
               <b-form-radio class="mx-0" value="Year" >{{ $t('year') }}</b-form-radio>
             </b-form-radio-group>
           </b-button-toolbar>
