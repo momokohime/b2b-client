@@ -50,7 +50,7 @@
         <!--   <b-button type="button" variant="primary" class="float-right"><i class="icon-cloud-download"></i></b-button> -->
           <b-button-toolbar  class="float-right" aria-label="Toolbar with buttons group">
             <b-form-radio-group @input="fetchDashboard()"  class="mr-3" id="radiosBtn" buttons button-variant="outline-secondary" v-model="selected" name="radiosBtn">
-              <b-form-radio class="mx-0" value="Day" >{{ $t('day') }}</b-form-radio>
+              <b-form-radio class="mx-0" value="JMDIOFWENFO" >{{ $t('day') }}</b-form-radio>
                <b-form-radio class="mx-0" value="Weekly" >{{ $t('week') }}</b-form-radio>
               <b-form-radio class="mx-0" value="Month">{{ $t('month') }}</b-form-radio>
               <b-form-radio class="mx-0" value="Year" >{{ $t('year') }}</b-form-radio>
@@ -95,8 +95,6 @@
       <div class="col-md-12 col-sm-12 col-lg-12 col-12">
     <div class="card-header">
        {{ $t('top_clients') }}
-       
-        <b-button variant="primary"  class="float-right" @click="$router.push('dashboard/report/customer')" >ver</b-button>
       </div>
       <b-table class="mb-0 table-outline" responsive="sm" hover :items="topClients" :fields="clientFields"  head-variant="light">
             <div slot="avatar" class="avatar" slot-scope="data">
@@ -119,8 +117,6 @@
       <div class="col-md-6 col-sm-6 col-lg-6 col-12">
      <div class="card-header">
         {{ $t('top_brands') }}
-       
-          <b-button variant="primary"  class="float-right" @click="$router.push('dashboard/report/brand')" >ver</b-button>
       </div>
       <b-table class="mb-0 table-outline" responsive="sm" hover :items="topBrands" :fields="brandFields" head-variant="light">
             <div slot="avatar" class="avatar" slot-scope="data">
@@ -139,7 +135,6 @@
      <div class="col-md-6 col-sm-6 col-lg-6 col-12 table-font">
      <div class="card-header">
        {{ $t('top_sale_items') }}
-        <b-button variant="primary"  class="float-right" @click="$router.push('dashboard/report/sales')" >ver</b-button>
       </div>
       <b-table class="mb-0 table-outline" responsive="sm" hover :items="salesItems" :fields="salesFields" head-variant="light">
             <div slot="avatar" class="avatar" slot-scope="data">
@@ -197,7 +192,7 @@
                   v-model="brandReport.to">
                </flat-pickr>
              </li>
-             <li class="report-sec"><button  class="btn check-btn" type="button" @click="brandReports()" style="background-color:  #003da6">Reporte</button></li>
+             <li class="report-sec"><button  class="btn check-btn" type="button" @click="brandReports()" style="background-color:  blue">Report</button></li>
 
            </ul>
           </div>
@@ -288,7 +283,6 @@ export default {
       topClients:[],
       topBrands:[],
       totalSales: [],
-      totalCustomers: [],
       topBrandReport:[],
       brand:[],
        config: {
