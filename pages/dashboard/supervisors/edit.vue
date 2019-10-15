@@ -5,7 +5,7 @@
       <b-col md="12" class="edit-table">
         <b-card>
         <div slot="header">
-            <strong>{{ $t('edit_tk') }}</strong>
+            <strong>Editar Supervisor</strong>
           </div>
           <div class="alert alert-danger" role="alert" v-show="error">
             {{ error }}
@@ -14,13 +14,7 @@
           <!-- Form fields -->
           <b-form @submit.prevent="salesman" >
           <!-- form starts -->
-            <b-form-group
-            label="ERP vendedor Id(opcional)"
-            label-for="salesmanId"
-            label-cols-lg="3"
-            >
-            <b-form-input id="basicName" type="text"  v-model="form.salesman.relation_id" placeholder="00000001"></b-form-input>            
-          </b-form-group>
+          
 
           <b-form-group
                   label="Nombre"
@@ -62,7 +56,7 @@
         </b-card>
        
       
-        <b-card :header="caption" class="table-sec-new table-responsive">
+       <!--  <b-card :header="caption" class="table-sec-new">
           <b-table  :items="Customersalesman" :fields="clientFields" :current-page="currentPage" :per-page="perPage">
              
               <template slot="Acción" slot-scope="data">
@@ -80,7 +74,7 @@
               @change="fetchSalesManCustomer">
             </b-pagination>
            </nav>
-         </b-card>
+         </b-card> -->
       </b-col>
     </b-row>
   </div>
@@ -199,7 +193,7 @@ export default {
     var vm = this
     this.id = this.$route.params.id
     this.fetchSalesMan(this.id)
-    this.fetchSalesManCustomer(1)    
+      
   },
   methods: {
       switchVisibility() {
@@ -231,32 +225,17 @@ export default {
         this.error =  e.response.data.message
       })
     },
-    fetchSalesManCustomer(page){
-      this.currentPage = page
-      this.$axios.get('tk_clients/'+this.id+'?page='+page)
-      //this.$axios.get('salesmancustomer/'+this.id )
-      .then(response => {
-        // JSON responses are automatically parsed.
-       this.Customersalesman = response.data.data;
-       this.per_page = response.data.per_page
-       this.totalRows = response.data.total
-       this.currentPage = response.data.current_page
-        // this.totalRows   = response.data.data.length;
-      })
-      .catch(e => {
-        this.error =  e.response.data.message
-      })    
-    },
+    
     async salesman () {
         
         var data = this.form.salesman
 
         this.error = null
         
-        await this.$axios.put('telemarketers/'+this.id,data)
+        await this.$axios.put('supervisors/'+this.id,data)
          .then(response => {        
         // JSON responses are automatically parsed.
-          this.$router.push('/dashboard/telemarketers')
+          this.$router.push('/dashboard/supervisors')
       })
       .catch(e => {
         this.error = e.response.data.message;
@@ -291,7 +270,7 @@ export default {
     },
     cancel()
     {
-        this.$router.push('/dashboard/salesman')
+        this.$router.push('/dashboard/supervisors')
     }
   }
 };

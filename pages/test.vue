@@ -28,7 +28,7 @@
 }
 </style>
 <script>
-
+  import helper from '~/utils/helper'
   export default {
     components: {
      
@@ -55,6 +55,11 @@
       var y = offsetY/zoomer.offsetHeight*100
       zoomer.style.backgroundPosition = x + '% ' + y + '%';
     }
+  },
+  mounted() {
+    const users = [{ name: 'fred', age: 48 }, { name: 'barney', age: 36 }, { name: 'fred', age: 40 }];
+    const foo = helper.orderBy(users, ['name', 'age'])
+    console.log(foo, '00 -- 00')
   }
   }
 </script>

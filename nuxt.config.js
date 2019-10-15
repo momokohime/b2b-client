@@ -18,8 +18,8 @@ module.exports = {
       openpay_pub_key: process.env.OPENPAY_PUB_KEY,
   },
   server: {
-    port: process.env.APP_SERVER_PORT, // default: 4445
-    host: process.env.APP_SERVER_HOST, // default: 172.16.0.71
+    port: process.env.APP_SERVER_PORT, // default: 3000
+    host: process.env.APP_SERVER_HOST, // default: localhost
   },
   // mode: process.env.APP_MODE,
   /*

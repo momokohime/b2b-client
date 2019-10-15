@@ -11,7 +11,7 @@ export default function ({
   	return redirect('/');
   }
 
-  if (user.is['admin'] || user.is['VD'] || user.is['TK']) {
+  if (user.is['admin'] || user.is['VD'] || user.is['TK'] || user.is['SUP']) {
   	//
   } else {
     return redirect('/')

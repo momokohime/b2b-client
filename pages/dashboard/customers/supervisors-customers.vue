@@ -20,7 +20,7 @@
     </div>
 </div>
 
-   <table class="table table-striped custom-table new table-responsive">
+   <table class="table table-striped custom-table new">
           <thead>
             <tr>
              
@@ -158,7 +158,7 @@ import { mapGetters } from 'vuex';
           this.currentPage = page
           var queryString = Object.keys(filters).map(key => 'filter[' +key + ']=' + filters[key]).join('&');
           //this.$axios.get(`clients?page=`+page)
-          this.$axios.get('clients?'+queryString, {
+          this.$axios.get('supervisors/clients?'+queryString, {
               params: {
                 page: page,
             }

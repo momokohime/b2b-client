@@ -11,17 +11,18 @@
 	
 		    <li>
 		      <multiselect
-                :multiple="false"
+              :multiple="false"
 	            v-model="clientReport.user"
 	            :options="customerList"
 	            :close-on-select="true"
 	            :clear-on-select="false"
 	            :hide-selected="true"
 	            :preserve-search="true"
-	            placeholder="Selecciona vendedor"
+	            placeholder="Selecciona clientes"
 	            label="user"
 	            track-by="user"
 	            :preselect-first="true"
+               @search-change="asyncFind"
 	            id="example1"
                ></multiselect>
              </li>
@@ -154,8 +155,25 @@ export default {
         this.fetchTopclients();
     },
   methods: {
+    asyncFind(query)
+    {
+        this.isLoading = true
+          this.$axios.get('clients/dropdown?s='+query)
+          .then(response => {
+          this.customerList = response.data.data
+
+          this.customerList = this.customerList.map(function(elem) {
+            return {
+              value: elem.id,
+              user: elem.name
+            } 
+          })
+            
+          this.isLoading = false
+        })
+    },
     fetchCustomer(){
-        this.$axios.get('clients')
+        this.$axios.get('clients/dropdown')
        .then(response => {
         
         this.customerList = response.data.data

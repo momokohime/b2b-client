@@ -12,6 +12,7 @@
 				  	<li class="list-inline-item"> <nuxt-link to="/preguntas-frecuentes">Preguntas Frecuentes</nuxt-link></li>
 				  	<!-- <li class="list-inline-item"> <nuxt-link to="/quieres-ser-distribuidor">¿Quieres ser distribuidor?</nuxt-link></li>	 -->
 				  	<li class="list-inline-item"> <nuxt-link to="/contactos">Contacto</nuxt-link></li>
+				  	<li class="list-inline-item"> <nuxt-link to="/jobs">Bolsa de Trabajo</nuxt-link></li>
 				  		
 			   </ul>
 			</div>

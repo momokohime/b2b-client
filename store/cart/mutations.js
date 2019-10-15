@@ -33,7 +33,7 @@ export default {
   },
   setCustomer(state, customer) {
     state.customer = customer
-     this.$axios.post('/sync_cart', { items: [], customer: state.customer })
+     // this.$axios.post('/sync_cart', { items: [], customer: state.customer })
   },
 
   setCurrentPage(state, curentPage) {

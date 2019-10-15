@@ -4,7 +4,7 @@
     <b-row>
       <b-col md="12" class="customer-listing">
         <b-card :header="caption">
-          <b-table  :items="Customersalesman" :fields="clientFields" :current-page="currentPage" :per-page="perPage">
+          <b-table  :items="Customersalesman" :fields="clientFields" :current-page="currentPage" :per-page="perPage" class="table-responsive">
           </b-table>
           <nav>
              <b-pagination

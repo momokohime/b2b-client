@@ -25,7 +25,7 @@
                 </tr>
                 </thead>
               <tbody>
-                 <tr v-for="(product, index) in cartItems">
+                 <tr v-for="(product, index) in sortedCartItems">
                   <td><a href="#" @click="deleteProduct(product)" ><img src="~/assets/frontend/images/error.png"></a></td>
                   <td class="product-img"><img :src="product.image"></td>
                   <td>{{ product.MATNR }}</td>
@@ -211,7 +211,8 @@
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
-// import Cookies from 'js-cookie';
+import helper from '~/utils/helper'
+
 export default {
   layout: 'dashboard',
   name: 'dashboard',
@@ -289,6 +290,10 @@ export default {
 
     getCustomer() {
       return this.$store.state.products.customer
+    },
+
+    sortedCartItems() {
+      return helper.orderBy(this.cartItems, ['MATNR'])
     },
 
     ...mapGetters({

@@ -48,7 +48,7 @@
 						</div>
 						<div class="brand-list currency" v-if="loggedInUser">
 							<ul v-if="loggedInUser.is.BU">
-								<li v-if="product.price">$ {{product.price}}</li>
+								<li v-if="product.price" :class="{ promotionalprice: product.is_promotional }">$ {{ product.price }}</li>
 							</ul>
 						</div>
 						<div class="brand-list currency color btn" v-if="loggedInUser">

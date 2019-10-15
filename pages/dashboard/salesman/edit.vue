@@ -62,7 +62,7 @@
         </b-card>
        
       
-        <b-card :header="caption" class="table-sec-new">
+        <b-card :header="caption" class="table-sec-new table-responsive">
           <b-table  :items="Customersalesman" :fields="clientFields" :current-page="currentPage" :per-page="perPage">
              
               <template slot="Acción" slot-scope="data">

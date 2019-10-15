@@ -75,6 +75,33 @@ export default {
         }       
       ]
     },
+    {
+      name: 'Supervisor',
+      url: '/dashboard/supervisors',
+      icon: 'fa fa-user-plus',
+      children: [
+        {
+          name: 'Todos los Supervisor',
+          url: '/dashboard/supervisors',
+          icon: 'fa fa-user-plus'
+        }, 
+        {
+          name: 'Asignar Clientes',
+          url: '/dashboard/supervisors/assign/clients',
+          icon: 'fa fa-user-plus'
+        } , 
+        {
+          name: 'Asignar Vendedors',
+          url: '/dashboard/supervisors/assign/salesman',
+          icon: 'fa fa-user-plus'
+        } , 
+        {
+          name: 'Asignar Telemarketing',
+          url: '/dashboard/supervisors/assign/telemarketers',
+          icon: 'fa fa-user-plus'
+        }  
+      ]
+    },
     /*{
       name: 'Cupones',
       url: '/dashboard/coupons',

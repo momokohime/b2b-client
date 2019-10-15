@@ -424,6 +424,7 @@ export default {
       },
       set(e) {
         this.$store.commit('products/setCustomer', e)
+        this.refreshCart()
       }
     },
 
@@ -474,9 +475,10 @@ export default {
       incQty: 'products/incQty',
       decQty: 'products/decQty',
       updateQty: 'products/updateQty',
+      syncCart: 'products/syncCart',
   }),
     viewDescription(product){
-            product.excerpt = product.long_description
+      product.excerpt = product.long_description
    },
     clearFilters() {
       Object.keys(this.filters).map(filterKey => this.filters[filterKey] = '')
@@ -553,6 +555,20 @@ export default {
     activateThumb(index, thumb) {
       this.active_thumb = index
       this.preview_image = thumb
+    },
+
+    refreshCart() {
+      var vm = this  
+      const customer = vm.$store.state.products.customer
+      this.$axios.post('/sync_cart_get', customer).then(function(response){
+        const items = response.data
+        if(items.customer) {
+          vm.syncCart(items)
+        }
+      }).catch(function(err){
+        // console.log(err, 'Something went wrong while fetching the cart items..')
+        console.log('Cart can not be synced !')
+      })
     }
   }
 };

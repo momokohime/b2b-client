@@ -4,7 +4,7 @@
    <b-row>
       <b-col sm="5">
       </b-col>
-      <b-col sm="7" class="d-none d-md-block">
+      <b-col sm="7" v-if="loggedInUser && loggedInUser.is['admin']" class="d-none d-md-block">
          <b-button variant="primary" class="m-2 float-right" @click="$router.push('salesman/add')" >{{ $t('add_sales_man') }}</b-button>
       </b-col>
     </b-row>
@@ -43,6 +43,7 @@
    * Randomize array element order in-place.
    * Using Durstenfeld shuffle algorithm.
    */
+import { mapGetters, mapMutations } from 'vuex';
 
   export default {
     layout: 'dashboard',
@@ -104,6 +105,9 @@
         perPage: 0,
         totalRows: 0
       }
+    },
+    computed: {
+    ...mapGetters(['loggedInUser']),
     },
     mounted() {
         this.fetchRoles(1);

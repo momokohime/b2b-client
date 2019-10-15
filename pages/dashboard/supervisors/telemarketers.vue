@@ -114,7 +114,7 @@
     },
     methods: {
     fetchRoles(page){
-      this.$axios.get(`telemarketers?page=`+page)
+      this.$axios.get(`supervisors/telemarketers?page=`+page)
      .then(response => {
 
         // JSON responses are automatically parsed.

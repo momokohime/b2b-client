@@ -103,7 +103,12 @@ label.btn.btn-outline-secondary.active {
 .table-outline tbody tr:nth-child(2n) {
     background: #fff;
 }
-
+.table-responsive{
+    white-space: nowrap;
+}
+.table-responsive-sm{
+    white-space: nowrap;
+}
 .card-header {
     padding: .75rem 1.25rem;
     margin-bottom: 15px !important;
@@ -469,6 +474,15 @@ object-position: center;
 }
 
 
+@media (max-width:1024px){
+
+    .filter-sec.card.assign{
+        display: flex;
+        flex-direction: row;
+        overflow: auto;
+    }
+}
+
 @media (max-width:991px){
     
     ul.catalog-list2 li.main {
@@ -539,7 +553,7 @@ object-position: center;
     }
     .filter-sec.card.assign li{
     width: 100%;
-    margin: 0px 0px 10px 0 !important;
+    margin: 0px 10px 10px 0 !important;
     }
     .check-btn {
     margin-left: 0 !important;
@@ -550,7 +564,7 @@ object-position: center;
     }
     footer.app-footer {
     text-align: center !important;
-    margin: 20px auto 0;
+    margin: 20px 0 0 0;
     display: block;
     font-size: 12px;
     padding: 10px 20px;
@@ -597,11 +611,21 @@ object-position: center;
     padding: 0 0px;
 	}
 	.custom-sel.form-inout label{
-    padding: 0 5px 0 5px;
+    padding: 0;
 	}
 	.card-header:first-child {
     margin: 0;
-	}
+    }
+    
+    .personal-detail-sec ul li{
+        font-size: 14px !important;
+        margin: 0px 15px 15px 0;
+    }
+
+    .personal-detail-sec ul li span{
+        font-size: 12px !important;
+        margin: 0px 15px 15px 0;
+    }
 }
 @media only screen (max-device-width: 640px) and (orientation: landscape) {
 	 .app-header.navbar .navbar-brand {

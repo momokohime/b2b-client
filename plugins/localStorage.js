@@ -5,6 +5,7 @@ import createPersistedState from 'vuex-persistedstate'
 export default ({store}) => {
   createPersistedState({
       key: 'b2bautoparts',
+      storage: window.sessionStorage,
       // reducer (val) {        
       //   if(val.auth.loggedIn === false) {
       //     return {}

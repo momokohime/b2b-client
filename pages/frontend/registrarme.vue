@@ -276,7 +276,7 @@ export default {
 
 	        await this.$axios.post('customer',formData)
 	         .then(response => {        
-	          console.log(response.data.data)
+	          //console.log(response.data.data)
 	          this.success = response.data.data
 
              var vm = this;

@@ -5,6 +5,7 @@
         <Sidebar :navItems="nav" v-if="loggedInUser && loggedInUser.is['admin']"></Sidebar>  
         <Sidebar :navItems="salesManNav" v-if="loggedInUser && loggedInUser.is['VD']"></Sidebar>  
         <Sidebar :navItems="tkManNav" v-if="loggedInUser && loggedInUser.is['TK']"></Sidebar>
+        <Sidebar :navItems="supManMenu" v-if="loggedInUser && loggedInUser.is['SUP']"></Sidebar>
       <main class="main">
         <breadcrumb :list="list"/>
         <div class="container-fluid">
@@ -142,6 +143,7 @@
 import admin from './menu'
 import sales from './menu-sales'
 import tkMenu from './tk_menu'
+import supMenu from './sup_menu'
 // import testMenu from './testMenu'
 import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '~/components/'
 import { mapGetters, mapMutations } from 'vuex';
@@ -165,14 +167,19 @@ export default {
       // nav: testMenu.items,
       salesManNav: sales.items,
       tkManNav: tkMenu.items,
+      supManMenu: supMenu.items,
     }
   },
   watch:{
       $route (to, from){
-          var vm = this        
-          this.$axios.get('/sync_cart').then(function(response){
+          console.log('route changed')
+          var vm = this  
+          const customer = vm.$store.state.products.customer
+          this.$axios.post('/sync_cart_get', customer).then(function(response){
             const items = response.data
-            vm.syncCart(items)
+            if(items.customer) {
+              vm.syncCart(items)
+            }
           }).catch(function(err){
             // console.log(err, 'Something went wrong while fetching the cart items..')
             console.log('Cart can not be synced !')

@@ -4,8 +4,8 @@
    <b-row>
       <b-col sm="5">
       </b-col>
-      <b-col sm="7" v-if="loggedInUser && loggedInUser.is['admin']" class="d-none d-md-block">
-         <b-button variant="primary" class="m-2 float-right" @click="$router.push('telemarketers/add')" >Agregar Telemarketing</b-button>
+      <b-col sm="7" class="d-none d-md-block">
+         <b-button variant="primary" class="m-2 float-right" @click="$router.push('supervisors/add')" >Agregar Supervisor</b-button>
       </b-col>
     </b-row>
 
@@ -13,13 +13,18 @@
      <div class="alert alert-danger" role="alert" v-show="error">
       {{ error }}
     </div>
-    <b-table :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="salesman"  :fields="fields">
+    <b-table :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="supervisor"  :fields="fields">
      
+      <template slot="Ver" slot-scope="data">
+          <nuxt-link :to="{ name: 'supervisors_detail', params: { id: data.item.id,title:'clientes' }}">Clientes</nuxt-link>
+          <nuxt-link :to="{ name: 'supervisors_detail', params: { id: data.item.id ,title:'vendedors'}}">Vendedors</nuxt-link>
+          <nuxt-link :to="{ name: 'supervisors_detail', params: { id: data.item.id ,title:'telemarketing'}}">Telemarketing</nuxt-link>
+      </template>
+
       <template slot="Acción" slot-scope="data">
-          <nuxt-link :to="{ name: 'telemarketers_edit', params: { id: data.item.id }}"><i class="icon-pencil icons"> </i></nuxt-link>
-         <b-link href="" @click="delSalesman(data.item.id)"><i class="icon-trash icons  "></i>
+          <nuxt-link :to="{ name: 'supervisors_edit', params: { id: data.item.id }}"><i class="icon-pencil icons"> </i></nuxt-link>
+         <b-link href="" @click="delSupervisor(data.item.id)"><i class="icon-trash icons"></i>
         </b-link>
-        <nuxt-link :to="{ name: 'tk_detail', params: { id: data.item.id }}"><i class="icon-info icons"> </i></nuxt-link>
       </template>
     </b-table>
     <nav>
@@ -29,7 +34,7 @@
                 :simple="false"
                 :per-page="perPage"
                 order="is-right"
-                @change="fetchRoles">
+                @change="fetchSupervisors">
       </b-pagination>
     </nav>
   </b-card>
@@ -43,8 +48,7 @@
    * Randomize array element order in-place.
    * Using Durstenfeld shuffle algorithm.
    */
-  import { mapGetters, mapMutations } from 'vuex';
-  
+
   export default {
     layout: 'dashboard',
     name: 'dashboard',
@@ -52,7 +56,7 @@
     props: {
       caption: {
         type: String,
-        default: 'Telemarketers'
+        default: 'Supervisor'
       },
       hover: {
         type: Boolean,
@@ -78,7 +82,7 @@
     data: () => {
       return {
         error: null,
-        salesman: [],
+        supervisor: [],
         fields: [
           {
               label:'No.',
@@ -99,6 +103,7 @@
               label:'Fecha de creación',
               key: 'created_at'
           },
+          {key: 'Ver'},
           {key: 'Acción'}
         ],
         currentPage: 0,
@@ -106,19 +111,16 @@
         totalRows: 0
       }
     },
-    computed: {
-    ...mapGetters(['loggedInUser']),
-    },
     mounted() {
-        this.fetchRoles(1);
+        this.fetchSupervisors(this.perPage);
     },
     methods: {
-    fetchRoles(page){
-      this.$axios.get(`telemarketers?page=`+page)
+    fetchSupervisors(page){
+      this.$axios.get(`supervisors?page=`+page)
      .then(response => {
 
         // JSON responses are automatically parsed.
-       this.salesman = response.data.data;
+       this.supervisor = response.data.data;
        this.perPage = response.data.per_page
        this.totalRows = response.data.total
        this.currentPage = response.data.current_page
@@ -128,8 +130,8 @@
         this.error =  e.response.data.message
       })
     },
-   delSalesman(id) {
-        this.$bvModal.msgBoxConfirm('Por favor confirma que quieres borrar al vendedor.', {
+   delSupervisor(id) {
+        this.$bvModal.msgBoxConfirm('Por favor confirma que quieres borrar al supervisor.', {
           title: 'Please Confirm',
           size: 'sm',
           buttonSize: 'sm',
@@ -142,9 +144,9 @@
         })
           .then(value => {
             if(value == true)
-                this.$axios.delete('telemarketers/'+id)
+                this.$axios.delete('supervisors/'+id)
                  .then(response => { 
-                 this.salesman = this.salesman.filter((e)=>e.id !== id )       
+                 this.supervisor = this.supervisor.filter((e)=>e.id !== id )       
                 })
                 .catch(e => {
                   this.error = e.response.data.message;

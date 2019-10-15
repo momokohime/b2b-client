@@ -321,8 +321,10 @@
 
 													<div class="app-btn" v-if="product.applications.length >0">
 													<button @click="appProduct(product)">APLICACION</button>
-
 													</div>
+													<div v-if="product.attributes">
+													 	<img v-if="product.attributes.brands_info" :src="product.attributes.brands_info.brand_image">
+													</div> 
 												</div>
 												<div class="col-xs-12 col-sm-5 col-md-12 col-lg-5" v-if="loggedInUser">
 													<div class="block-sidebar" v-if="loggedInUser.is.BU">
@@ -800,7 +802,12 @@ button.custom-phone.heart i {
     display: block;
 }
 
-
+.last-side img {
+    height: 40px;
+}
+.profile-details a h4 {
+    text-align: left;
+}
 input[type=range]:focus::-webkit-slider-runnable-track {
   background: #003DA6;
 }

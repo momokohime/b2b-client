@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section" v-if="!mainsectionloading">
 
      <div class="animated fadeIn banner-sec banner-top">
 	     <div>
@@ -270,6 +270,7 @@
     layout: 'frontend',
     data: () => {
       return {
+        mainsectionloading: true,
         n_error: false,
         newsletterForm: {
           email: '',
@@ -327,6 +328,11 @@
   		this.fetchHomeData()
   		this.singleBanner()
   	},
+    created () {
+      this.$nextTick(function () {
+         this.mainsectionloading = false
+     })
+   },
     methods:{
       async subscribe() {
         var vm  = this

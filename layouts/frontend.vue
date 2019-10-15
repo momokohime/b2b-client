@@ -31,8 +31,10 @@ export default {
   },
   watch:{
       $route (to, from){
-          var vm = this        
-          this.$axios.get('/sync_cart').then(function(response){
+          // console.log('route has been changed 00--00 ');
+          var vm = this  
+          const customer = vm.$store.state.cart.customer     
+          this.$axios.post('/sync_cart_get', customer).then(function(response){
             const items = response.data
             vm.syncCart(items)
           }).catch(function(err){

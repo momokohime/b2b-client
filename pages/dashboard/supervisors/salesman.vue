@@ -5,7 +5,7 @@
       <b-col sm="5">
       </b-col>
       <b-col sm="7" v-if="loggedInUser && loggedInUser.is['admin']" class="d-none d-md-block">
-         <b-button variant="primary" class="m-2 float-right" @click="$router.push('telemarketers/add')" >Agregar Telemarketing</b-button>
+         <b-button variant="primary" class="m-2 float-right" @click="$router.push('salesman/add')" >{{ $t('add_sales_man') }}</b-button>
       </b-col>
     </b-row>
 
@@ -16,10 +16,10 @@
     <b-table :hover="hover" :striped="striped" :bordered="bordered" :small="small" :fixed="fixed" responsive="sm" :items="salesman"  :fields="fields">
      
       <template slot="Acción" slot-scope="data">
-          <nuxt-link :to="{ name: 'telemarketers_edit', params: { id: data.item.id }}"><i class="icon-pencil icons"> </i></nuxt-link>
+          <nuxt-link :to="{ name: 'salesman_edit', params: { id: data.item.id }}"><i class="icon-pencil icons"> </i></nuxt-link>
          <b-link href="" @click="delSalesman(data.item.id)"><i class="icon-trash icons  "></i>
         </b-link>
-        <nuxt-link :to="{ name: 'tk_detail', params: { id: data.item.id }}"><i class="icon-info icons"> </i></nuxt-link>
+        <nuxt-link :to="{ name: 'salesman_detail', params: { id: data.item.id }}"><i class="icon-info icons"> </i></nuxt-link>
       </template>
     </b-table>
     <nav>
@@ -43,8 +43,8 @@
    * Randomize array element order in-place.
    * Using Durstenfeld shuffle algorithm.
    */
-  import { mapGetters, mapMutations } from 'vuex';
-  
+import { mapGetters, mapMutations } from 'vuex';
+
   export default {
     layout: 'dashboard',
     name: 'dashboard',
@@ -52,7 +52,7 @@
     props: {
       caption: {
         type: String,
-        default: 'Telemarketers'
+        default: 'Vendedores'
       },
       hover: {
         type: Boolean,
@@ -114,7 +114,7 @@
     },
     methods: {
     fetchRoles(page){
-      this.$axios.get(`telemarketers?page=`+page)
+      this.$axios.get(`supervisors/salesman?page=`+page)
      .then(response => {
 
         // JSON responses are automatically parsed.
@@ -142,7 +142,7 @@
         })
           .then(value => {
             if(value == true)
-                this.$axios.delete('telemarketers/'+id)
+                this.$axios.delete('salesman/'+id)
                  .then(response => { 
                  this.salesman = this.salesman.filter((e)=>e.id !== id )       
                 })
